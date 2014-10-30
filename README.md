@@ -1,5 +1,5 @@
-PhpSpecExtension
-================
+ErrorExtension
+==============
 
 Behat extension to provide formatted error messages for fatal errors.
 
