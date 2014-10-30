@@ -97,7 +97,6 @@ class ErrorTester implements SuiteTester
                     $error['line']
                 ));
                 $this->output->writeln('');
-                exit;
             }
         });
     }
