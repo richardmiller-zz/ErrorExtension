@@ -91,15 +91,14 @@ class ErrorTester implements SuiteTester
                     $observer->notify($error);
                 }
 
-                $errorMessage = sprintf(
-                    'The error "%s" occurred at line %s in file %s',
-                    $error['message'],
-                    $error['file'],
-                    $error['line']
-                );
+                $errorMessages = [
+                    sprintf('The error "%s"', $error['message']),
+                    sprintf('occurred in file %s', $error['file']),
+                    sprintf('at line %s', $error['line']),
+                ];
 
                 $formatter = new FormatterHelper();
-                $formattedBlock = $formatter->formatBlock($errorMessage, 'error', true);
+                $formattedBlock = $formatter->formatBlock($errorMessages, 'error', true);
                 $this->output->writeln('');
                 $this->output->writeln($formattedBlock);
             }
