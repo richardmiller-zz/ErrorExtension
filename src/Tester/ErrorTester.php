@@ -10,6 +10,7 @@ use Behat\Testwork\Tester\Setup\Setup;
 use Behat\Testwork\Tester\Setup\Teardown;
 use Behat\Testwork\Tester\SuiteTester;
 use RMiller\ErrorExtension\Observer\ErrorObservers;
+use Symfony\Component\Console\Helper\FormatterHelper;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class ErrorTester implements SuiteTester
@@ -90,14 +91,17 @@ class ErrorTester implements SuiteTester
                     $observer->notify($error);
                 }
 
-                $this->output->writeln('');
-                $this->output->writeln(sprintf(
-                    '<error>The error "%s" occurred at line %s in file %s</error>',
+                $errorMessage = sprintf(
+                    'The error "%s" occurred at line %s in file %s',
                     $error['message'],
                     $error['file'],
                     $error['line']
-                ));
+                );
+
+                $formatter = new FormatterHelper();
+                $formattedBlock = $formatter->formatBlock($errorMessage, 'error', true);
                 $this->output->writeln('');
+                $this->output->writeln($formattedBlock);
             }
         });
     }
