@@ -8,6 +8,7 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\DependencyInjection\Reference;
 
 class ErrorExtension implements ExtensionInterface
 {
@@ -48,5 +49,14 @@ class ErrorExtension implements ExtensionInterface
      */
     public function process(ContainerBuilder $container)
     {
+        $errorTesterDefinition = $container->getDefinition('rmiller.error_extension.error_tester');
+
+        $errorListeners = [];
+
+        foreach ($container->findTaggedServiceIds('rmiller.error_listener') as $id => $tags) {
+            $errorListeners[] = new Reference($id);
+        }
+
+        $errorTesterDefinition->replaceArgument(2, $errorListeners);
     }
 }

@@ -13,11 +13,14 @@
     ],
 
     "require": {
-        "php":             ">=5.4",
-        "behat/behat":     "~3.0,>=3.0.4"
+        "php":         ">=5.4",
+        "behat/behat": "~3.0,>=3.0.4"
     },
 
     "autoload": {
         "psr-4": { "RMiller\\ErrorExtension\\": "src/" }
+    },
+    "require-dev": {
+        "phpspec/phpspec": "~2.1@dev"
     }
 }

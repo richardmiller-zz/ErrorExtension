@@ -9,6 +9,7 @@ use Behat\Testwork\Tester\Result\TestResult;
 use Behat\Testwork\Tester\Setup\Setup;
 use Behat\Testwork\Tester\Setup\Teardown;
 use Behat\Testwork\Tester\SuiteTester;
+use RMiller\ErrorExtension\Observer\ErrorObservers;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class ErrorTester implements SuiteTester
@@ -20,11 +21,11 @@ class ErrorTester implements SuiteTester
     public function __construct(
         SuiteTester $baseTester,
         OutputInterface $output,
-        array $observers = null)
-    {
+        array $observers = null
+    ) {
         $this->baseTester = $baseTester;
         $this->output = $output;
-        $this->observers = $observers;
+        $this->observers = new ErrorObservers($observers);
     }
 
     /**
