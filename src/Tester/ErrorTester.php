@@ -87,10 +87,6 @@ class ErrorTester implements SuiteTester
         register_shutdown_function(function () {
             if ($error = error_get_last()) {
 
-                foreach ($this->observers as $observer) {
-                    $observer->notify($error);
-                }
-
                 $errorMessages = [
                     sprintf('The error "%s"', $error['message']),
                     sprintf('occurred in file %s', $error['file']),
@@ -101,6 +97,11 @@ class ErrorTester implements SuiteTester
                 $formattedBlock = $formatter->formatBlock($errorMessages, 'error', true);
                 $this->output->writeln('');
                 $this->output->writeln($formattedBlock);
+                $this->output->writeln('');
+
+                foreach ($this->observers as $observer) {
+                    $observer->notify($error);
+                }
             }
         });
     }
