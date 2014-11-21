@@ -1,6 +1,9 @@
 ErrorExtension
 ==============
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/richardmiller/ErrorExtension/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/richardmiller/ErrorExtension/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/richardmiller/ErrorExtension/badges/build.png?b=master)](https://scrutinizer-ci.com/g/richardmiller/ErrorExtension/build-status/master)
+
 [Behat](http://docs.behat.org/en/v3.0/) extension to provide formatted error messages for fatal errors.
 
 This stops the large stack traces appearing on every fatal error. Instead a simpler
