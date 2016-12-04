@@ -85,7 +85,6 @@ class ErrorTester implements SuiteTester
     {
         register_shutdown_function(function () {
             if ($error = error_get_last()) {
-
                 $errorMessages = [
                     sprintf('The error "%s"', $error['message']),
                     sprintf('occurred in file %s', $error['file']),
